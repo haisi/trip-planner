@@ -1,9 +1,48 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Test</title>
+    <title>Trip Planner</title>
+    <link rel="stylesheet" type="text/css" href="./css/style.css">
+
+    <!-- Load d3.js -->
+    <!-- TODO store locally. App might be run internal network! Which version though? -->
+    <!-- TODO at least add SRI check! -->
+    <script src="https://d3js.org/d3.v4.js"></script>
+    <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
+    <script src="https://d3js.org/d3-geo-projection.v2.min.js"></script>
+
 </head>
 <body>
-<p>Hello World</p>
+
+<h1>Trip Planner With Earth In Mind</h1>
+
+<form>
+    <p>Choose your itinerary:</p>
+    <fieldset>
+        <input type="radio" checked="checked" id="itA" name="ItinerarySelection" value="Trip A">
+        <label for="itA">Trip A</label>
+        <input type="radio" id="itB" name="ItinerarySelection" value="Trip B">
+        <label for="itB">Trip B</label>
+        <input type="radio" id="itC" name="ItinerarySelection" value="Trip C">
+        <label for="itC">Trip C</label>
+    </fieldset>
+</form>
+
+<svg id="worldmap" width="640" height="600"></svg>
+
+<!-- TODO map and chart next to each other...CSS -->
+<div id="co2Chart">
+    <!-- TODO find d3 dynamic barchart-->
+    BARCHART
+    <pre>
+    co2 Plane: ---- 200
+    co2 Car  : -- 100
+    co2 Train: - 50
+    co2 Total: ------- 350
+    </pre>
+</div>
+
+<script src="./src/app.js"></script>
+
 </body>
 </html>

@@ -1,0 +1,75 @@
+(() => { // IIFE
+    // TODO add radio button change listener
+    // TODO update the paths
+    // TODO update the co2 bar-chart
+    const itineraries = {
+        "A" : {
+            "file": "./data/data_connectionmap.csv",
+            "co2Plane": 200, // TODO calculate beforehand the co2 values
+            "co2Car": 100,
+            "co2Train": 50
+        },
+        "B" : {
+            "file": "./data/data_connectionmap.csv", // TODO use different route
+            "co2Plane": 200,
+            "co2Car": 100,
+            "co2Train": 50
+        }
+    };
+
+    // https://www.d3-graph-gallery.com/graph/connectionmap_csv.html
+    // The svg
+    const svg = d3.select("svg");
+    const width = +svg.attr("width");
+    const height = +svg.attr("height");
+
+    // Map and projection
+    const projection = d3.geoMercator()
+        .scale(85)
+        .translate([width / 2, height / 2 * 1.3]);
+
+    // A path generator
+    const path = d3.geoPath()
+        .projection(projection);
+
+    // Load world shape AND list of connection
+    d3.queue()
+        .defer(d3.json, "./data/world.geojson")  // World shape
+        .defer(d3.csv, itineraries.A.file) // Position of circles
+        .await(ready);
+
+    function ready(error, dataGeo, data) {
+
+        // Reformat the list of link. Note that columns in csv file are called long1, long2, lat1, lat2
+        const link = [];
+        data.forEach(function (row) {
+            source = [+row.long1, +row.lat1];
+            target = [+row.long2, +row.lat2];
+            topush = {type: "LineString", coordinates: [source, target]};
+            link.push(topush)
+        });
+
+        // Draw the map
+        svg.append("g")
+            .selectAll("path")
+            .data(dataGeo.features)
+            .enter().append("path")
+            .attr("fill", "#b8b8b8")
+            .attr("d", d3.geoPath()
+                .projection(projection)
+            )
+            .style("stroke", "#fff")
+            .style("stroke-width", 0);
+
+        // Add the path
+        svg.selectAll("myPath")
+            .data(link)
+            .enter()
+            .append("path")
+            .attr("d", d => path(d))
+            .style("fill", "none")
+            .style("stroke", "#69b3a2")
+            .style("stroke-width", 2)
+    }
+
+})();
