@@ -29,18 +29,23 @@
     </fieldset>
 </form>
 
-<svg id="worldmap" width="640" height="600"></svg>
+<div class="grid">
+    <div class="map">
+        <svg id="worldmap" width="600" height="400"></svg>
+    </div>
 
-<!-- TODO map and chart next to each other...CSS -->
-<div id="co2Chart">
-    <!-- TODO find d3 dynamic barchart-->
-    BARCHART
-    <pre>
+    <div class="chart">
+        <div id="co2Chart">
+            <!-- TODO find d3 dynamic barchart-->
+            BARCHART
+            <pre>
     co2 Plane: ---- 200
     co2 Car  : -- 100
     co2 Train: - 50
     co2 Total: ------- 350
     </pre>
+        </div>
+    </div>
 </div>
 
 <script src="./src/tripcomponent.js"></script>
