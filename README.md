@@ -38,3 +38,13 @@ Change to yes when you are ready.
 |-----------------------|--------|
 | First prototype ready | Yes    |
 | Final version ready   | No     |
+
+## Sources
+### Data
+
+- https://www.eea.europa.eu/data-and-maps/daviz/specific-co2-emissions-per-passenger-3#tab-chart_1
+
+### Graphs
+
+- Barchart: https://blog.risingstack.com/d3-js-tutorial-bar-charts-with-javascript/
+- Worldmap: https://www.d3-graph-gallery.com/graph/connectionmap_csv.html
