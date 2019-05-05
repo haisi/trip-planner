@@ -3,13 +3,13 @@
     // TODO update the paths
     // TODO update the co2 bar-chart
     const itineraries = {
-        "A" : {
+        "A": {
             "file": "./data/data_connectionmap.csv",
             "co2Plane": 200, // TODO calculate beforehand the co2 values
             "co2Car": 100,
             "co2Train": 50
         },
-        "B" : {
+        "B": {
             "file": "./data/data_connectionmap.csv", // TODO use different route
             "co2Plane": 200,
             "co2Car": 100,
@@ -41,12 +41,10 @@
     function ready(error, dataGeo, data) {
 
         // Reformat the list of link. Note that columns in csv file are called long1, long2, lat1, lat2
-        const link = [];
-        data.forEach(function (row) {
-            source = [+row.long1, +row.lat1];
-            target = [+row.long2, +row.lat2];
-            topush = {type: "LineString", coordinates: [source, target]};
-            link.push(topush)
+        const link = data.map(row => {
+            let source = [row.long1, row.lat1];
+            let target = [row.long2, row.lat2];
+            return {type: "LineString", coordinates: [source, target], mode: row.mode};
         });
 
         // Draw the map
@@ -61,6 +59,17 @@
             .style("stroke", "#fff")
             .style("stroke-width", 0);
 
+        // TODO use d3.js construct for map
+        const mode2color = (mode) => {
+            if (mode === "car") {
+                return "#69b3a2"
+            } else if (mode === "train") {
+                return "#002ab3"
+            } else {
+                return "#b32b22";
+            }
+        };
+
         // Add the path
         svg.selectAll("myPath")
             .data(link)
@@ -68,8 +77,8 @@
             .append("path")
             .attr("d", d => path(d))
             .style("fill", "none")
-            .style("stroke", "#69b3a2")
-            .style("stroke-width", 2)
+            .style("stroke", d => mode2color(d.mode))
+            .style("stroke-width", 1)
     }
 
 })();
