@@ -39,11 +39,38 @@
         .await(ready);
 
     function ready(error, dataGeo, data) {
+        // TODO use d3.js construct for map
+        // @formatter:off
+        const mode2color = (mode) => {
+            switch (mode) {
+                case "plane": return "#b32b22";
+                case "car": return "#69b3a2";
+                case "train": return "#002ab3";
+            }
+        };
+
+        const distance2co2 = (mode, distance) => {
+            switch (mode) {
+                case "plane": return distance * 244.09;
+                case "car": return distance * 101.61;
+                case "train": return distance * 28.39;
+            }
+        };
+        // @formatter:on
+
+        const co2stats = {
+          train: 0,
+          car: 0,
+          plane: 0
+        };
 
         // Reformat the list of link. Note that columns in csv file are called long1, long2, lat1, lat2
         const link = data.map(row => {
             let source = [row.long1, row.lat1];
             let target = [row.long2, row.lat2];
+
+            co2stats[row.mode] += distance2co2(row.mode, row.distance);
+
             return {type: "LineString", coordinates: [source, target], mode: row.mode};
         });
 
@@ -58,17 +85,6 @@
             )
             .style("stroke", "#fff")
             .style("stroke-width", 0);
-
-        // TODO use d3.js construct for map
-        const mode2color = (mode) => {
-            if (mode === "car") {
-                return "#69b3a2"
-            } else if (mode === "train") {
-                return "#002ab3"
-            } else {
-                return "#b32b22";
-            }
-        };
 
         // Add the path
         svg.selectAll("myPath")
