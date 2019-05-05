@@ -1,4 +1,7 @@
 (() => { // IIFE
+
+    const calc = Calc();
+
     // TODO add radio button change listener
     // TODO update the paths
     // TODO update the co2 bar-chart
@@ -39,24 +42,6 @@
         .await(ready);
 
     function ready(error, dataGeo, data) {
-        // TODO use d3.js construct for map
-        // @formatter:off
-        const mode2color = (mode) => {
-            switch (mode) {
-                case "plane": return "#b32b22";
-                case "car": return "#69b3a2";
-                case "train": return "#002ab3";
-            }
-        };
-
-        const distance2co2 = (mode, distance) => {
-            switch (mode) {
-                case "plane": return distance * 244.09;
-                case "car": return distance * 101.61;
-                case "train": return distance * 28.39;
-            }
-        };
-        // @formatter:on
 
         const co2stats = {
           train: 0,
@@ -69,7 +54,7 @@
             let source = [row.long1, row.lat1];
             let target = [row.long2, row.lat2];
 
-            co2stats[row.mode] += distance2co2(row.mode, row.distance);
+            co2stats[row.mode] += calc.distance2co2(row.mode, row.distance);
 
             return {type: "LineString", coordinates: [source, target], mode: row.mode};
         });
@@ -93,7 +78,7 @@
             .append("path")
             .attr("d", d => path(d))
             .style("fill", "none")
-            .style("stroke", d => mode2color(d.mode))
+            .style("stroke", d => calc.mode2color(d.mode))
             .style("stroke-width", 1)
     }
 
