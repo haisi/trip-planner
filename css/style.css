@@ -1,6 +1,5 @@
 body {
     margin:40px auto;
-    max-width:850px;
     line-height:1.6;
     font-size:18px;
     color:#454545;
@@ -11,14 +10,12 @@ h1,h2,h3 {
 }
 
 #co2Chart {
-    width: 300px;
-    height: 300px;
-    background-color: chocolate;
+    background-color: #d2d0d1;
 }
 
 .grid {
     display: grid;
-    grid-template-columns: 70% 30%;
+    grid-template-columns: 50% 50%;
     grid-template-rows: auto;
     grid-template-areas: "map chart";
 }
