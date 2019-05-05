@@ -36,5 +36,5 @@ Change to yes when you are ready.
 
 | Version               | Status |
 |-----------------------|--------|
-| First prototype ready | No     |
+| First prototype ready | Yes    |
 | Final version ready   | No     |
