@@ -18,13 +18,8 @@
 
 <form>
     <p>Choose your itinerary:</p>
-    <fieldset>
-        <input type="radio" checked="checked" id="itA" name="ItinerarySelection" value="Trip A">
-        <label for="itA">Trip A</label>
-        <input type="radio" id="itB" name="ItinerarySelection" value="Trip B">
-        <label for="itB">Trip B</label>
-        <input type="radio" id="itC" name="ItinerarySelection" value="Trip C">
-        <label for="itC">Trip C</label>
+    <fieldset id="itinerary-selector">
+        <!-- Dynamically filled -->
     </fieldset>
 </form>
 
@@ -42,6 +37,7 @@
     </pre>
 </div>
 
+<script src="./src/tripcomponent.js"></script>
 <script src="./src/calculation.js"></script>
 <script src="./src/app.js"></script>
 

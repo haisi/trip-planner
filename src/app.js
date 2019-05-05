@@ -5,20 +5,12 @@
     // TODO add radio button change listener
     // TODO update the paths
     // TODO update the co2 bar-chart
-    const itineraries = {
-        "A": {
-            "file": "./data/data_connectionmap.csv",
-            "co2Plane": 200, // TODO calculate beforehand the co2 values
-            "co2Car": 100,
-            "co2Train": 50
-        },
-        "B": {
-            "file": "./data/data_connectionmap.csv", // TODO use different route
-            "co2Plane": 200,
-            "co2Car": 100,
-            "co2Train": 50
-        }
-    };
+    const trips = [
+        {name: "Trip A", file: "./data/data_connectionmap.csv"},
+        {name: "Trip B", file: "./data/data_connectionmap.csv"},
+    ];
+
+    const tripComp = TripComponent(trips, () => {});
 
     // https://www.d3-graph-gallery.com/graph/connectionmap_csv.html
     // The svg
@@ -38,7 +30,7 @@
     // Load world shape AND list of connection
     d3.queue()
         .defer(d3.json, "./data/world.geojson")  // World shape
-        .defer(d3.csv, itineraries.A.file) // Position of circles
+        .defer(d3.csv, trips[0].file) // Position of circles
         .await(ready);
 
     function ready(error, dataGeo, data) {
