@@ -14,7 +14,7 @@
 
     // https://www.d3-graph-gallery.com/graph/connectionmap_csv.html
     // The svg
-    const svg = d3.select("svg");
+    const svg = d3.select("svg#worldmap");
     const width = +svg.attr("width");
     const height = +svg.attr("height");
 
