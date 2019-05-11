@@ -17,7 +17,14 @@
         {mode: 'total', value: 60},
     ];
 
-    const barchart = BarChart(barChartData);
+    const barChartData2 = [
+        {mode: 'car', value: 20},
+        {mode: 'train', value: 30},
+        {mode: 'plane', value: 10},
+        {mode: 'total', value: 80},
+    ];
+
+    const barchart = BarChart(barChartData, barChartData2);
     const worldMap = WorldMap(trips[0].file);
 
 

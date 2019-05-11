@@ -62,5 +62,10 @@ const BarChart = (data, data2) => {
         .attr('text-anchor', 'middle')
         .text('co2 output by mode of transportation');
 
+    bars.data(data2)
+        .transition()
+        .duration(500)
+        .attr('y', (s) => yScale(s.value))
+        .attr('height', (s) => chart_height - yScale(s.value));
 
 };
