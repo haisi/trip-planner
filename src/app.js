@@ -4,8 +4,8 @@
     // TODO update the paths
     // TODO update the co2 bar-chart
     const trips = [
-        {name: "Trip A", file: "./data/data_connectionmap.csv"},
-        {name: "Trip B", file: "./data/data_connectionmap.csv"},
+        {name: "Trip A", file: "./data/trip_A_data.csv"},
+        {name: "Trip B", file: "./data/trip_B_data.csv"},
     ];
 
     const tripComp = TripComponent(trips, () => {});
