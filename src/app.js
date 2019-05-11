@@ -35,7 +35,8 @@
 
 
     TripComponent(trips, (selectedTrip) => {
-        barchart.updateValues(tripsData[selectedTrip])
+        barchart.updateValues(tripsData[selectedTrip]);
+        worldMap.updateValues(tripsData[selectedTrip])
     });
 
 })();
