@@ -17,8 +17,28 @@ const Calc = () => {
     };
     // @formatter:on
 
+    const transform = (csvData) => {
+        const co2stats = {
+            train: 0,
+            car: 0,
+            plane: 0,
+        };
+
+        csvData.map(row => {
+            co2stats[row.mode] += distance2co2(row.mode, row.distance);
+        });
+
+        return [
+            {mode: 'car', value: co2stats.car},
+            {mode: 'train', value: co2stats.train},
+            {mode: 'plane', value: co2stats.plane},
+            {mode: 'total', value: co2stats.car + co2stats.plane + co2stats.train},
+        ];
+    };
+
     return {
         mode2color : mode2color,
         distance2co2 : distance2co2,
+        csv2Obj : transform,
     }
 };

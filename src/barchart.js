@@ -1,5 +1,9 @@
-const BarChart = (data, data2) => {
+let total = 0;
+
+const BarChart = (csvData) => {
     const calc = Calc();
+    let data = calc.csv2Obj(csvData);
+    total = data.filter((it) => it.mode === 'total')[0].value;
 
     // https://blog.risingstack.com/d3-js-tutorial-bar-charts-with-javascript/
     const co2Chart = d3.select("svg#co2Chart");
@@ -10,7 +14,7 @@ const BarChart = (data, data2) => {
         .attr('transform', `translate(${margin}, ${margin})`);
     const yScale = d3.scaleLinear()
         .range([chart_height, 0])
-        .domain([0, 100]);
+        .domain([0, total * 1.05]);
     chart.append('g')
         .call(d3.axisLeft(yScale));
     const xScale = d3.scaleBand()
@@ -62,10 +66,14 @@ const BarChart = (data, data2) => {
         .attr('text-anchor', 'middle')
         .text('co2 output by mode of transportation');
 
-    bars.data(data2)
-        .transition()
-        .duration(500)
-        .attr('y', (s) => yScale(s.value))
-        .attr('height', (s) => chart_height - yScale(s.value));
+    return {
+        updateValues: (csvData) => {
+            bars.data(calc.csv2Obj(csvData))
+                .transition()
+                .duration(500)
+                .attr('y', (s) => yScale(s.value))
+                .attr('height', (s) => chart_height - yScale(s.value));
+        }
+    }
 
 };
