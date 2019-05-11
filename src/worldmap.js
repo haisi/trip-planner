@@ -17,15 +17,11 @@ const WorldMap = (tripFile) => {
     const path = d3.geoPath()
         .projection(projection);
 
-    // Load world shape AND list of connection
-    let result = d3.queue()
-        .defer(d3.json, "./data/world.geojson")  // World shape
-        .defer(d3.csv, tripFile) // Position of circles
-        .await(ready);
+    Promise.all([d3.json("./data/world.geojson"), d3.csv(tripFile)]).then(values => {
+        ready(values[0], values[1]);
+    });
 
-    console.log(result);
-
-    function ready(error, dataGeo, data) {
+    function ready(dataGeo, data) {
 
         const co2stats = {
             train: 0,
