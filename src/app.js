@@ -1,6 +1,5 @@
 (() => { // IIFE
 
-    // TODO add radio button change listener
     // TODO update the paths
     // TODO update the co2 bar-chart
     const trips = [
@@ -8,7 +7,9 @@
         {name: "Trip B", file: "./data/trip_B_data.csv"},
     ];
 
-    const tripComp = TripComponent(trips, () => {});
+    TripComponent(trips, (selectedTrip) => {
+        console.log(selectedTrip);
+    });
 
     const barChartData = [
         {mode: 'car', value: 10},
