@@ -1,4 +1,5 @@
-const WorldMap = (tripFile) => {
+// https://stackoverflow.com/questions/49534470/d3-js-v5-promise-all-replaced-d3-queue
+const WorldMap = (dataGeo, data) => {
 
     const calc = Calc();
 
@@ -17,24 +18,14 @@ const WorldMap = (tripFile) => {
     const path = d3.geoPath()
         .projection(projection);
 
-    Promise.all([d3.json("./data/world.geojson"), d3.csv(tripFile)]).then(values => {
-        ready(values[0], values[1]);
-    });
+    ready(dataGeo, data);
 
     function ready(dataGeo, data) {
-
-        const co2stats = {
-            train: 0,
-            car: 0,
-            plane: 0
-        };
 
         // Reformat the list of link. Note that columns in csv file are called long1, long2, lat1, lat2
         const link = data.map(row => {
             let source = [row.long1, row.lat1];
             let target = [row.long2, row.lat2];
-
-            co2stats[row.mode] += calc.distance2co2(row.mode, row.distance);
 
             return {type: "LineString", coordinates: [source, target], mode: row.mode};
         });
@@ -61,6 +52,5 @@ const WorldMap = (tripFile) => {
             .style("stroke", d => calc.mode2color(d.mode))
             .style("stroke-width", 1);
 
-        return co2stats;
     }
 };

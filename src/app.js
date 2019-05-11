@@ -12,6 +12,7 @@
     };
 
     let barchart = null;
+    let worldMap = null;
 
     const csvPromises = trips.map(trip => d3.csv(trip.file));
     const geojsonPromise = d3.json("./data/world.geojson");
@@ -26,10 +27,12 @@
             i++;
         }
 
+        let geojson = values[values.length - 1];
+
         barchart = BarChart(tripsData["Trip A"]);
+        worldMap = WorldMap(geojson, values[0]);
     });
 
-    const worldMap = WorldMap(trips[0].file);
 
     TripComponent(trips, (selectedTrip) => {
         barchart.updateValues(tripsData[selectedTrip])
