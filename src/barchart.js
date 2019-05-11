@@ -1,4 +1,6 @@
-const BarChart = (data) => {
+const BarChart = (data, data2) => {
+    const calc = Calc();
+
     // https://blog.risingstack.com/d3-js-tutorial-bar-charts-with-javascript/
     const co2Chart = d3.select("svg#co2Chart");
     const margin = 60;
@@ -20,13 +22,14 @@ const BarChart = (data) => {
         .attr('transform', `translate(0, ${chart_height})`)
         .call(d3.axisBottom(xScale));
 
-    chart.selectAll()
+    const bars = chart.selectAll()
         .data(data)
         .enter()
         .append('rect')
         .attr('x', (s) => xScale(s.mode))
         .attr('y', (s) => yScale(s.value))
         .attr('height', (s) => chart_height - yScale(s.value))
+        .style("fill", d => calc.mode2color(d.mode))
         .attr('width', xScale.bandwidth());
 
     // Add lines
