@@ -2,6 +2,8 @@ const TripComponent = (trips, onChangeListener) => {
 
     const fieldset = document.getElementById("itinerary-selector");
 
+    let prev = null;
+
     trips.map((trip, idx) => {
         // <input type="radio" checked="checked" id="itA" name="ItinerarySelection" value="Trip A">
         // <label for="itA">Trip A</label>
@@ -11,6 +13,14 @@ const TripComponent = (trips, onChangeListener) => {
         radio.value = trip.name;
         const id = "trip" + idx;
         radio.id = id;
+
+        radio.onclick = () => {
+            const selectedValue = document.querySelector('input[name="ItinerarySelection"]:checked').value;
+            if (selectedValue !== prev) {
+                prev = selectedValue;
+                onChangeListener(selectedValue);
+            }
+        };
 
         if (idx === 0) {
             radio.checked = "checked";
