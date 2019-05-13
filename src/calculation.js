@@ -5,14 +5,20 @@ const Calc = () => {
             case "plane": return "#b32b22";
             case "car": return "#69b3a2";
             case "train": return "#002ab3";
+            case "total": return "#6f29b3";
         }
     };
 
+    /**
+     * @param mode {'plane'|'car'|'train'}
+     * @param distance in km
+     * @returns co2 output in kg
+     */
     const distance2co2 = (mode, distance) => {
         switch (mode) {
-            case "plane": return distance * 244.09;
-            case "car": return distance * 101.61;
-            case "train": return distance * 28.39;
+            case "plane": return distance * 244.09 / 1000;
+            case "car": return distance * 101.61 / 1000;
+            case "train": return distance * 28.39 / 1000;
         }
     };
     // @formatter:on

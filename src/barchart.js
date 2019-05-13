@@ -58,13 +58,13 @@ const BarChart = (csvData) => {
         .attr('y', margin / 2.4)
         .attr('transform', 'rotate(-90)')
         .attr('text-anchor', 'middle')
-        .text('CO2 emissions in grams');
+        .text('CO2 emissions in kg');
 
     co2Chart.append('text')
         .attr('x', chart_width / 2 + margin)
         .attr('y', 40)
         .attr('text-anchor', 'middle')
-        .text('co2 output by mode of transportation');
+        .text('CO2 output by mode of transportation');
 
     return {
         updateValues: (csvData) => {
