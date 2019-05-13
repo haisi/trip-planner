@@ -1,9 +1,6 @@
-let total = 0;
-
-const BarChart = (csvData) => {
+const BarChart = (csvData, maxTotal) => {
     const calc = Calc();
     let data = calc.csv2Obj(csvData);
-    total = data.filter((it) => it.mode === 'total')[0].value;
 
     // https://blog.risingstack.com/d3-js-tutorial-bar-charts-with-javascript/
     const co2Chart = d3.select("svg#co2Chart");
@@ -14,7 +11,7 @@ const BarChart = (csvData) => {
         .attr('transform', `translate(${margin}, ${margin})`);
     const yScale = d3.scaleLinear()
         .range([chart_height, 0])
-        .domain([0, total * 1.05]);
+        .domain([0, maxTotal * 1.05]);
     chart.append('g')
         .call(d3.axisLeft(yScale));
     const xScale = d3.scaleBand()

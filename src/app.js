@@ -28,9 +28,17 @@
         }
 
         let geojson = values[values.length - 1];
+        let csvValues = values.slice(0, -1);
 
-        barchart = BarChart(tripsData["Trip A"]);
-        worldMap = WorldMap(geojson, values[0]);
+        const calc = Calc();
+        const totals = csvValues
+            .map(calc.csv2Obj)
+            .map(data => data.filter((it) => it.mode === 'total')[0].value);
+
+        const maxTotal = Math.max(...totals);
+
+        barchart = BarChart(tripsData["Trip A"], maxTotal);
+        worldMap = WorldMap(geojson, csvValues[0]);
     });
 
 
