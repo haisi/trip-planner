@@ -22,6 +22,7 @@
         "Trip B": {},
     };
 
+    const tripNameComp = document.getElementById("tripName");
     const co2Counter = createCountUp('co2Counter', ' kg');
     const distanceCounter = createCountUp('kmCounter', ' km');
     let barchart = null;
@@ -64,7 +65,8 @@
         co2Counter.update(tripsData[selectedTrip].co2Total);
         distanceCounter.update(tripsData[selectedTrip].kmTotal);
         barchart.updateValues(tripsData[selectedTrip].data);
-        worldMap.updateValues(tripsData[selectedTrip].data)
+        worldMap.updateValues(tripsData[selectedTrip].data);
+        tripNameComp.innerText = selectedTrip;
     });
 
 })();
