@@ -2,6 +2,16 @@
 
     const calc = Calc();
 
+    const createCountUp = (componentId, suffix) => {
+        const options = {
+            startVal: 0,
+            duration: 1.5,
+            separator: '\'',
+            suffix: suffix,
+        };
+        return new CountUp(componentId, 0, options);
+    };
+
     const trips = [
         {name: "Trip A", file: "./data/trip_A_data.csv"},
         {name: "Trip B", file: "./data/trip_B_data.csv"},
@@ -12,6 +22,8 @@
         "Trip B": {},
     };
 
+    const co2Counter = createCountUp('co2Counter', ' kg');
+    const distanceCounter = createCountUp('kmCounter', ' km');
     let barchart = null;
     let worldMap = null;
 
@@ -41,12 +53,16 @@
 
         const maxTotal = Math.max(...co2Totals);
 
+        co2Counter.update(tripsData["Trip A"].co2Total);
+        distanceCounter.update(tripsData["Trip A"].kmTotal);
         barchart = BarChart(tripsData["Trip A"].data, maxTotal);
         worldMap = WorldMap(geojson, csvValues[0]);
     });
 
 
     TripComponent(trips, (selectedTrip) => {
+        co2Counter.update(tripsData[selectedTrip].co2Total);
+        distanceCounter.update(tripsData[selectedTrip].kmTotal);
         barchart.updateValues(tripsData[selectedTrip].data);
         worldMap.updateValues(tripsData[selectedTrip].data)
     });
