@@ -3,6 +3,11 @@ const WorldMap = (dataGeo, data) => {
 
     const calc = Calc();
 
+    // Define the div for the tooltip
+    const tooltip = d3.select("body").append("div")
+        .attr("class", "tooltip")
+        .style("opacity", 0);
+
     // https://www.d3-graph-gallery.com/graph/connectionmap_csv.html
     // The svg
     const worldmapSvg = d3.select("svg#worldmap");
@@ -23,7 +28,7 @@ const WorldMap = (dataGeo, data) => {
         let source = [row.long1, row.lat1];
         let target = [row.long2, row.lat2];
 
-        return {type: "LineString", coordinates: [source, target], mode: row.mode};
+        return {type: "LineString", coordinates: [source, target], mode: row.mode, comment: row.comment};
     });
 
     // Draw the map
@@ -45,16 +50,34 @@ const WorldMap = (dataGeo, data) => {
         .append("path")
         .attr("class", "meinPfad")
         .attr("d", d => path(d))
+        .attr('pointer-events', 'visibleStroke')
+        .attr('title', d => d.comment)
+        .attr('alt', d => d.comment)
         .style("fill", "none")
         .style("stroke", d => calc.mode2color(d.mode))
-        .style("stroke-width", 1);
+        .style("stroke-width", 1)
+        .style("cursor", "pointer")
+        // .on("click", d => {
+        .on("mouseover", d => {
+            tooltip.transition()
+                .duration(200)
+                .style("opacity", .9);
+            tooltip.html(d.comment)
+                .style("left", (d3.event.pageX) + "px")
+                .style("top", (d3.event.pageY - 28) + "px");
+        })
+        .on("mouseout", d => {
+            tooltip.transition()
+                .duration(500)
+                .style("opacity", 0);
+        });
 
     return {
         updateValues: (csvData) => {
             const link = csvData.map(row => {
                 let source = [row.long1, row.lat1];
                 let target = [row.long2, row.lat2];
-                return {type: "LineString", coordinates: [source, target], mode: row.mode};
+                return {type: "LineString", coordinates: [source, target], mode: row.mode, comment: row.comment};
             });
 
             let pfad = worldmapSvg.selectAll("myPath")
@@ -68,9 +91,27 @@ const WorldMap = (dataGeo, data) => {
                 .append("path")
                 .attr("class", "meinPfad")
                 .attr("d", d => path(d))
+                .attr('pointer-events', 'visibleStroke')
+                .attr('title', d => d.comment)
+                .attr('alt', d => d.comment)
                 .style("fill", "none")
                 .style("stroke", d => calc.mode2color(d.mode))
-                .style("stroke-width", 1);
+                .style("stroke-width", 1)
+                .style("cursor", "pointer")
+                // .on("click", d => {
+                .on("mouseover", d => {
+                    tooltip.transition()
+                        .duration(200)
+                        .style("opacity", .9);
+                    tooltip.html(d.comment)
+                        .style("left", (d3.event.pageX) + "px")
+                        .style("top", (d3.event.pageY - 28) + "px");
+                })
+                .on("mouseout", d => {
+                    tooltip.transition()
+                        .duration(500)
+                        .style("opacity", 0);
+                });
         }
     }
 };
