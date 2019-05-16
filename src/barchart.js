@@ -33,15 +33,7 @@ const BarChart = (csvData, maxTotal) => {
         .style("fill", d => calc.mode2color(d.mode))
         .attr('width', xScale.bandwidth());
 
-    // Add lines
-    chart.append('g')
-        .attr('class', 'grid')
-        .attr('transform', `translate(0, ${chart_height})`)
-        .call(d3.axisBottom()
-            .scale(xScale)
-            .tickSize(-chart_height, 0, 0)
-            .tickFormat(''));
-
+    // Add horizontal grid lines
     chart.append('g')
         .attr('class', 'grid')
         .call(d3.axisLeft()
