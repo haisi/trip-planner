@@ -22,6 +22,15 @@
 
 <h1>Trip Planner With Earth In Mind</h1>
 
+<p>
+    Next year I will embark on a year long world trip. Being somewhat environmentally conscious,  I want to leave a small carbon footprint behind.
+    Therefore, I want to know which itinerary with which mode of transportation is the best for my journey and how big my total carbon footprint would be.
+</p>
+
+<p>
+    This project displays in a an interactive manner the difference in CO2 output and km travelled of different trips.
+</p>
+
 <form>
     <p>Choose your itinerary:</p>
     <fieldset id="itinerary-selector">
@@ -40,6 +49,13 @@
         <svg id="co2Chart" width="600" height="400"></svg>
     </div>
 </div>
+
+<p>
+    The data sources can be found
+    <a href="https://www.eea.europa.eu/data-and-maps/daviz/specific-co2-emissions-per-passenger-3#tab-chart_1">here</a>.
+    The road and train distances were calculated with google maps.
+    Distances by plane were calculated with <a href="https://www.greatcirclemapper.net">greatcirclemapper.net</a>.
+</p>
 
 <script src="./src/barchart.js"></script>
 <script src="./src/tripcomponent.js"></script>
