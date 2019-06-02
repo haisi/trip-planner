@@ -37,12 +37,14 @@ Change to yes when you are ready.
 | Version               | Status |
 |-----------------------|--------|
 | First prototype ready | Yes    |
-| Final version ready   | No     |
+| Final version ready   | Yes    |
 
 ## Sources
 ### Data
 
 - https://www.eea.europa.eu/data-and-maps/daviz/specific-co2-emissions-per-passenger-3#tab-chart_1
+- https://www.greatcirclemapper.net/
+- https://www.google.ch/maps
 
 ### Graphs
 
