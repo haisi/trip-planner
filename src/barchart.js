@@ -4,7 +4,7 @@ const BarChart = (csvData, maxTotal) => {
 
     // https://blog.risingstack.com/d3-js-tutorial-bar-charts-with-javascript/
     const co2Chart = d3.select("svg#co2Chart");
-    const margin = 60;
+    const margin = 80;
     const chart_width = 500 - 2 * margin;
     const chart_height = 300 - 2 * margin;
     const chart = co2Chart.append('g')

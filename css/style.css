@@ -33,7 +33,7 @@ div.tooltip {
 }
 
 #co2Chart {
-    background-color: #d2d0d1;
+    float: right;
 }
 
 .grid {
