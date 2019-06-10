@@ -16,6 +16,7 @@
         {name: "Trans Siberian", file: "./data/trans_siberian.csv"},
         {name: "Trans Siberian over Mongolia", file: "./data/trans_siberian_mongolia.csv"},
         {name: "Europe - Russia - Kazakhstan Route", file: "./data/russia_kasachstan.csv"},
+        {name: "No Russia Route", file: "./data/unusual.csv"},
         {name: "Direct Flight", file: "./data/direct_flight.csv"},
         {name: "Indirect Flight", file: "./data/dubai_flight.csv"},
     ];
@@ -24,6 +25,7 @@
         "Trans Siberian": {},
         "Trans Siberian over Mongolia": {},
         "Europe - Russia - Kazakhstan Route": {},
+        "No Russia Route": {},
         "Direct Flight": {},
         "Indirect Flight": {},
     };
