@@ -1,12 +1,18 @@
 body {
-    margin:40px auto;
-    line-height:1.6;
-    font-size:18px;
-    color:#454545;
-    padding:0 10px
+    margin: 40px auto;
+    line-height: 1.6;
+    font-size: 18px;
+    color: #454545;
+    padding: 0 10px
 }
-h1,h2,h3 {
-    line-height:1.2
+
+h1, h2, h3 {
+    line-height: 1.2
+}
+
+input[type="radio"]:checked + label {
+    font-weight: bold;
+    color: #0d11ff;
 }
 
 .grid line {
@@ -47,6 +53,7 @@ div.tooltip {
     grid-area: map;
     width: 100%;
 }
+
 .chart {
     grid-area: chart;
     width: 100%;
