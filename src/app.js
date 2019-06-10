@@ -13,13 +13,19 @@
     };
 
     const trips = [
-        {name: "Trip A", file: "./data/trip_A_data.csv"},
-        {name: "Trip B", file: "./data/trip_B_data.csv"},
+        {name: "Trans Siberian", file: "./data/trans_siberian.csv"},
+        {name: "Trans Siberian over Mongolia", file: "./data/trans_siberian_mongolia.csv"},
+        {name: "Europe - Russia - Kazakhstan Route", file: "./data/russia_kasachstan.csv"},
+        {name: "Direct Flight", file: "./data/direct_flight.csv"},
+        {name: "Indirect Flight", file: "./data/dubai_flight.csv"},
     ];
 
     const tripsData = {
-        "Trip A": {},
-        "Trip B": {},
+        "Trans Siberian": {},
+        "Trans Siberian over Mongolia": {},
+        "Europe - Russia - Kazakhstan Route": {},
+        "Direct Flight": {},
+        "Indirect Flight": {},
     };
 
     const tripNameComp = document.getElementById("tripName");
@@ -54,9 +60,9 @@
 
         const maxTotal = Math.max(...co2Totals);
 
-        co2Counter.update(tripsData["Trip A"].co2Total);
-        distanceCounter.update(tripsData["Trip A"].kmTotal);
-        barchart = BarChart(tripsData["Trip A"].data, maxTotal);
+        co2Counter.update(tripsData["Trans Siberian"].co2Total);
+        distanceCounter.update(tripsData["Trans Siberian"].kmTotal);
+        barchart = BarChart(tripsData["Trans Siberian"].data, maxTotal);
         worldMap = WorldMap(geojson, csvValues[0]);
     });
 
