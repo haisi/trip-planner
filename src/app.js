@@ -28,6 +28,8 @@
         "Indirect Flight": {},
     };
 
+    const itinerarycomponent = ItineraryComponent();
+
     const tripNameComp = document.getElementById("tripName");
     const co2Counter = createCountUp('co2Counter', ' kg');
     const distanceCounter = createCountUp('kmCounter', ' km');
@@ -63,6 +65,7 @@
         co2Counter.update(tripsData["Trans Siberian"].co2Total);
         distanceCounter.update(tripsData["Trans Siberian"].kmTotal);
         barchart = BarChart(tripsData["Trans Siberian"].data, maxTotal);
+        itinerarycomponent.update(tripsData["Trans Siberian"].data);
         worldMap = WorldMap(geojson, csvValues[0]);
     });
 
@@ -72,6 +75,7 @@
         distanceCounter.update(tripsData[selectedTrip].kmTotal);
         barchart.updateValues(tripsData[selectedTrip].data);
         worldMap.updateValues(tripsData[selectedTrip].data);
+        itinerarycomponent.update(tripsData[selectedTrip].data);
         tripNameComp.innerText = selectedTrip;
     });
 
