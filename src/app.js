@@ -19,6 +19,7 @@
         {name: "No Russia Route", file: "./data/unusual.csv"},
         {name: "Direct Flight", file: "./data/direct_flight.csv"},
         {name: "Indirect Flight", file: "./data/dubai_flight.csv"},
+        {name: "Canada", file: "./data/canada.csv"},
     ];
 
     const tripsData = {
@@ -28,6 +29,7 @@
         "No Russia Route": {},
         "Direct Flight": {},
         "Indirect Flight": {},
+        "Canada": {},
     };
 
     const itinerarycomponent = ItineraryComponent();
