@@ -39,14 +39,26 @@ div.tooltip {
 }
 
 #co2Chart {
-    float: right;
 }
 
 .grid {
     display: grid;
-    grid-template-columns: 50% 50%;
+    grid-template-columns: 40% 35% 25%;
     grid-template-rows: auto;
-    grid-template-areas: "map chart";
+    grid-template-areas: "map chart itinerary";
+}
+
+/* Put the elements under each other for smaller devices */
+@media only screen and (max-width: 800px) {
+    .grid {
+        display: grid;
+        grid-template-columns: 100%;
+        grid-template-rows: auto;
+        grid-template-areas:
+            "map"
+            "chart"
+            "itinerary";
+    }
 }
 
 .map {
